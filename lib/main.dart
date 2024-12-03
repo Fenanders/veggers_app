@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:veggers_app/main_page.dart';
+
+import 'features/core/routes/router.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,21 +16,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        body: MainPage(),
-        // body: SafeArea(
-        //     child: Center(
-        //       child: Column(
-        //         mainAxisAlignment: MainAxisAlignment.center,
-        //         crossAxisAlignment: CrossAxisAlignment.center,
-        //                 children: [
-        //       LottieBuilder.asset('assets/veg-lottie.json'),
-        //       const Text('Veggers')
-        //                 ],
-        //               ),
-        //     )),
-      ),
+    return MaterialApp.router(
+      routerConfig: appRouter,
+      title: 'Train Timetable',
+      debugShowCheckedModeBanner: false,
     );
   }
 }
