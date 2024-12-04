@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:veggers_app/coming_soon_page.dart';
-import 'package:veggers_app/main_page.dart';
+import 'package:veggers_app/features/dashboard/presentation/pages/dashboard_page.dart';
 
 class MainNavigation extends StatefulWidget {
   const MainNavigation({super.key});
@@ -66,7 +65,7 @@ class _MainNavigationState extends State<MainNavigation> {
         controller: controller,
         physics: const NeverScrollableScrollPhysics(),
         children: const [
-          MainPage(),
+          DashboardPage(),
           ComingSoonPage(),
           ComingSoonPage(),
           ComingSoonPage(),
