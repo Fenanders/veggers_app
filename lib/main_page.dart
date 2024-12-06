@@ -13,8 +13,8 @@ class _MainPageState extends State<MainPage> {
     return SafeArea(
       child: Container(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Hi!'),
             Text('Yandi Fenanda'),
@@ -60,7 +60,9 @@ class _MainPageState extends State<MainPage> {
                 ],
               ),
             ),
-            SizedBox(height: 10.0,),
+            SizedBox(
+              height: 10.0,
+            ),
             boxPlantWidget()
           ],
         ),
@@ -70,20 +72,19 @@ class _MainPageState extends State<MainPage> {
 
   Container boxPlantWidget() {
     return Container(
-            constraints:
-                BoxConstraints(minWidth: double.infinity, minHeight: 120.0),
-            decoration: BoxDecoration(color: Colors.blueAccent),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Sawi'),
-                Text('Type'),
-                Text('Vegetable'),
-                Text('Pot'),
-                Text('4 Pcs'),
-              ],
-            ),
-          );
+      constraints: BoxConstraints(minWidth: double.infinity, minHeight: 120.0),
+      decoration: BoxDecoration(color: Colors.blueAccent),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Sawi'),
+          Text('Type'),
+          Text('Vegetable'),
+          Text('Pot'),
+          Text('4 Pcs'),
+        ],
+      ),
+    );
   }
 
   Container boxIndexWidget({String title = ''}) {
