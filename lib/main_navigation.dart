@@ -48,14 +48,14 @@ class _MainNavigationState extends State<MainNavigation> {
               items: [
                 bottomNavigationBarItem(
                     icon: "home", label: "Dashboard", index: 0),
+                // bottomNavigationBarItem(
+                //     icon: "bitcoin", label: "Coming Soon", index: 1),
                 bottomNavigationBarItem(
-                    icon: "bitcoin", label: "Coming Soon", index: 1),
+                    icon: "chart", label: "Coming Soon", index: 1),
                 bottomNavigationBarItem(
-                    icon: "chart", label: "Coming Soon", index: 2),
+                    icon: "siram", label: "Coming Soon", index: 2),
                 bottomNavigationBarItem(
-                    icon: "siram", label: "Coming Soon", index: 3),
-                bottomNavigationBarItem(
-                    icon: "user", label: "Coming Soon", index: 4),
+                    icon: "user", label: "Coming Soon", index: 3),
               ],
             ),
           ),
