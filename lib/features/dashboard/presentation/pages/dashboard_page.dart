@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:veggers_app/features/dashboard/presentation/bloc/dashboard_bloc.dart';
+import 'package:veggers_app/features/dashboard/presentation/bloc/dashboard_state.dart';
 import 'package:veggers_app/features/dashboard/presentation/widgets/plant_status_card.dart';
 import 'package:veggers_app/features/dashboard/presentation/widgets/sprinkle_card.dart';
 import 'package:veggers_app/features/dashboard/presentation/widgets/weather_status_card.dart';
@@ -55,40 +58,50 @@ class DashboardPage extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const WeatherStatusCard(),
-            const SprinkleCard(),
-            Container(
-              margin: const EdgeInsets.only(left: 16),
-              height: 131,
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Teman Hijau Milikmu",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF384F2B),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    SizedBox(
-                      height: 102,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: const [
-                          PlantStatusCard(),
-                          PlantStatusCard(),
-                          PlantStatusCard(),
-                        ],
-                      ),
-                    )
-                  ]),
-            ),
-            // TODO CARD Rekomendasi Teman Hijau
-          ],
+        child: BlocBuilder<DashboardBloc, DashboardState>(
+          builder: (context, state) {
+            if (state is SensorConnecting) {
+              return const CircularProgressIndicator();
+            }
+            if (state is SensorDataUpdated) {
+              return Column(
+              children: [
+                WeatherStatusCard(sensorData: state.data),
+                const SprinkleCard(),
+                Container(
+                  margin: const EdgeInsets.only(left: 16),
+                  height: 131,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Teman Hijau Milikmu",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xFF384F2B),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          height: 102,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: const [
+                              PlantStatusCard(),
+                              PlantStatusCard(),
+                              PlantStatusCard(),
+                            ],
+                          ),
+                        )
+                      ]),
+                ),
+                // TODO CARD Rekomendasi Teman Hijau
+              ],
+            );
+            }
+            return const Center(child: CircularProgressIndicator(),);
+          }
         ),
       ),
     );

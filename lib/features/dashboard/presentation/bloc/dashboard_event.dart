@@ -1,8 +1,10 @@
-part of 'dashboard_bloc.dart';
+import 'package:veggers_app/features/dashboard/presentation/models/sensor_data.dart';
 
-abstract class DashboardEvent extends Equatable {
-  const DashboardEvent();
+abstract class DashboardEvent {}
 
-  @override
-  List<Object> get props => [];
+class ConnectMqtt extends DashboardEvent {}
+class DisconnectMqtt extends DashboardEvent {}
+class UpdateSensorData extends DashboardEvent {
+  final SensorData data;
+  UpdateSensorData(this.data);
 }

@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:veggers_app/features/dashboard/presentation/pages/watering/watering_page.dart';
 import 'package:veggers_app/splash_page.dart';
 
 import '../../../main_navigation.dart';
@@ -22,6 +23,11 @@ final appRouter = GoRouter(
       path: '/',
       name: 'main_nav',
       builder: (context, state) => const MainNavigation(),
+    ),
+    GoRoute(
+      path: '/watering-page',
+      name: 'watering-page',
+      builder: (context, state) => const WateringPage()
     ),
   ],
 );

@@ -1,9 +1,16 @@
-part of 'dashboard_bloc.dart';
+import '../models/sensor_data.dart';
 
-abstract class DashboardState extends Equatable {
-  const DashboardState();  
+abstract class DashboardState {}
 
-  @override
-  List<Object> get props => [];
+class SensorInitial extends DashboardState {}
+
+class SensorConnecting extends DashboardState {}
+
+class SensorConnected extends DashboardState {}
+
+class SensorDisconnected extends DashboardState {}
+
+class SensorDataUpdated extends DashboardState {
+  final SensorData data;
+  SensorDataUpdated(this.data);
 }
-class DashboardInitial extends DashboardState {}
