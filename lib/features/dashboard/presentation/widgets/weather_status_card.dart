@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:veggers_app/features/dashboard/presentation/models/sensor_data.dart';
 
-class WeatherStatusCard extends StatelessWidget {
-  const WeatherStatusCard({super.key});
+class WeatherStatusCard extends StatefulWidget {
+  final SensorData sensorData;
 
+  const WeatherStatusCard({super.key, required this.sensorData});
+
+  @override
+  State<WeatherStatusCard> createState() => _WeatherStatusCardState();
+}
+
+class _WeatherStatusCardState extends State<WeatherStatusCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +33,7 @@ class WeatherStatusCard extends StatelessWidget {
                 const SizedBox(
                   width: 20,
                 ),
-                const Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -37,7 +45,7 @@ class WeatherStatusCard extends StatelessWidget {
                           color: Color(0xFFF0F0F0)),
                     ),
                     Text(
-                      "29°C",
+                      "${widget.sensorData.temperature} °C",
                       style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.w700,
@@ -69,18 +77,18 @@ class WeatherStatusCard extends StatelessWidget {
                     children: [
                       Image.asset("assets/icons/uv.png"),
                       const SizedBox(width: 8),
-                      const Column(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "8",
-                            style: TextStyle(
+                            "${widget.sensorData.uvIndex}",
+                            style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),
                           ),
-                          Text(
+                          const Text(
                             "UV Index",
                             style: TextStyle(
                                 fontSize: 10,
@@ -102,18 +110,18 @@ class WeatherStatusCard extends StatelessWidget {
                     children: [
                       Image.asset("assets/icons/droplet.png"),
                       const SizedBox(width: 8),
-                      const Column(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "78%",
-                            style: TextStyle(
+                            "${widget.sensorData.humidity} %",
+                            style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),
                           ),
-                          Text(
+                          const Text(
                             "Humidity",
                             style: TextStyle(
                                 fontSize: 10,
@@ -135,18 +143,18 @@ class WeatherStatusCard extends StatelessWidget {
                     children: [
                       Image.asset("assets/icons/soil.png"),
                       const SizedBox(width: 8),
-                      const Column(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "60%",
-                            style: TextStyle(
+                            widget.sensorData.status == "D" ? "Dry" : "Wet",
+                            style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white),
                           ),
-                          Text(
+                          const Text(
                             "Soil",
                             style: TextStyle(
                                 fontSize: 10,

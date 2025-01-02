@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SprinkleCard extends StatelessWidget {
   const SprinkleCard({super.key});
@@ -37,7 +38,9 @@ class SprinkleCard extends StatelessWidget {
             ],
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+               context.go('/watering-page');
+            },
             style: ElevatedButton.styleFrom(
               fixedSize: const Size(70, 22),
               padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 2),
