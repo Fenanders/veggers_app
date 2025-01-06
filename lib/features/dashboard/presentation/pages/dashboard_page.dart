@@ -6,6 +6,8 @@ import 'package:veggers_app/features/dashboard/presentation/widgets/plant_status
 import 'package:veggers_app/features/dashboard/presentation/widgets/sprinkle_card.dart';
 import 'package:veggers_app/features/dashboard/presentation/widgets/weather_status_card.dart';
 
+import '../widgets/plant_recomendation_card.dart';
+
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
 
@@ -59,12 +61,12 @@ class DashboardPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: BlocBuilder<DashboardBloc, DashboardState>(
-          builder: (context, state) {
-            if (state is SensorConnecting) {
-              return const CircularProgressIndicator();
-            }
-            if (state is SensorDataUpdated) {
-              return Column(
+            builder: (context, state) {
+          if (state is SensorConnecting) {
+            return const CircularProgressIndicator();
+          }
+          if (state is SensorDataUpdated) {
+            return Column(
               children: [
                 WeatherStatusCard(sensorData: state.data),
                 const SprinkleCard(),
@@ -96,13 +98,52 @@ class DashboardPage extends StatelessWidget {
                         )
                       ]),
                 ),
-                // TODO CARD Rekomendasi Teman Hijau
+                Container(
+                  margin: const EdgeInsets.only(left: 16, top: 20),
+                  height: 150,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Rekomendasi Teman Hijau",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xFF384F2B),
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                          height: 120,
+                          child: ListView(
+                            scrollDirection: Axis.horizontal,
+                            children: const [
+                              PlantRecomendationCard(
+                                  plantName: "Tomat",
+                                  plantScientificName: "Solanum lycopersicum",
+                                  plantImage: "assets/images/tomat.png"),
+                              PlantRecomendationCard(
+                                  plantName: "Pakcoy",
+                                  plantScientificName:
+                                      "Brassica rapa subsp. chinensis",
+                                  plantImage: "assets/images/pokcoy.png"),
+                              PlantRecomendationCard(
+                                  plantName: "Sawi Putih",
+                                  plantScientificName:
+                                      "Brassica rapa subsp. pekinensis",
+                                  plantImage: "assets/images/sawi-putih.png"),
+                            ],
+                          ),
+                        )
+                      ]),
+                ),
               ],
             );
-            }
-            return const Center(child: CircularProgressIndicator(),);
           }
-        ),
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }),
       ),
     );
   }
